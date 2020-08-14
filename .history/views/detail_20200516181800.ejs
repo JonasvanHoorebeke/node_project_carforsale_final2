@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<body>
+<h1>Annonce <%= item.id %></h1>
+<table>
+    <tr>
+        <td>Marque</td>
+        <td>Modèle</td>
+        <td>Prix</td>
+
+    </tr>    
+    <!--  <% detail.forEach(function(item) { %> -->
+        <% detail.forEach(function(item) { %>
+    <tr>
+        <td><%= item.marque %></td>
+        <td><%= item.modele %></td>
+        <td><%= item.prix %></td>
+        <td>
+    </tr>    
+    <!-- <% }); %>  -->
+</table>
+</body>

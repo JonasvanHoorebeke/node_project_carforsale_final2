@@ -1,0 +1,21 @@
+<nav class="navbar navbar-dark bg-dark">
+    <!-- Navbar content -->
+  </nav>
+  
+  <nav class="navbar navbar-dark bg-primary">
+    <!-- Navbar content -->
+  </nav>
+  
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <!-- Navbar content -->
+  </nav>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<form method='post'>
+    <div>Marque<input name='marque' value="<%= acheter.marque %>" /></div>
+    <div>Modèle<input name='modele' value="<%= acheter.modele %>" /></div>
+    <div>Année<input name='annee' value="<%= acheter.annee %>" /></div>
+    <div>Kilométrage<input name='kilometrage' value="<%= acheter.kilometrage %>" /></div>
+    <div>Prix<input name='prix' value="<%= acheter.prix %>" /></div>
+    <button>Save</button>
+    <input type="hidden" value="%= acheter.id %>"/>
+</form>
