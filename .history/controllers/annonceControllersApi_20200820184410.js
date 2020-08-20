@@ -45,9 +45,9 @@ exports.apiAnnonceAdd = function (req, res) {
     };
 
 
-exports.apiAnnonceDelete = function (req, res) {
-    const id = req.params.id;
-    let sql = `DELETE from annonce WHERE idannonce = ${id}`; 
+exports.SkinDeleteApi = function (req, res) {
+    const userId = req.params.userId;
+    let sql = `DELETE from skins WHERE id = ${userId}`; // id = nom clé primaire dans la bd, userId est lié au server
     let query = mysqlConnection.query(sql,(err, result)=>{
         if(err) {
             res.status(400).json({'message':error});
@@ -58,17 +58,17 @@ exports.apiAnnonceDelete = function (req, res) {
     });
 };
 
-exports.apiAnnonce = function (req, res) {
-    const id = req.params.id;
-    let sql = `SELECT * FROM annonce WHERE idannonce = ${id} `;
+exports.SkinEditApi = function (req, res) {
+    const userId = req.params.userId;
+    let sql = `SELECT * FROM skins WHERE id = ${userId} `; // id = nom clé primaire dans la bd, userId est lié au server
     let query = mysqlConnection.query(sql,(err, rows)=>{
         if(err) {        
             res.status(400).json({'message':error});
         }
         else{
             res.status(200).json({
-                title :'Annonce demandée',
-                annonces : rows
+                title :'Skins TEST',
+                skins : rows
             })
         }
     });

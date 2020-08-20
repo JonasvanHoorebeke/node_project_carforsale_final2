@@ -67,8 +67,8 @@ exports.apiAnnonce = function (req, res) {
         }
         else{
             res.status(200).json({
-                title :'Annonce demandée',
-                annonces : rows
+                title :'Skins TEST',
+                skins : rows
             })
         }
     });

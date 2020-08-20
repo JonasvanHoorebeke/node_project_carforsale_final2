@@ -1,6 +1,7 @@
 const mysqlConnection = require("../connection.js");
-let Annonces = require('../models/userModels.js');
+let Skin = require('../models/skinsmodel.js');
 
+//API ok
 exports.apiAnnoncesAll = function (req, res) {
     let sql = "SELECT * FROM annonce INNER JOIN categorie WHERE annonce.idcategorie = categorie.idcategorie";
     let query = mysqlConnection.query(sql, (err, rows) => {
@@ -18,24 +19,26 @@ exports.apiAnnoncesAll = function (req, res) {
 };
 
 
+//API ok
 exports.apiAnnonceUpdate = function (req, res) {
-    let annonce = new Annonce( req.body.idannonce, req.body.marque, req.body.modele, req.body.annee, req.body.kilometrage, req.body.prix, req.body.description, req.body.photo, req.body.codepostal);
-    console.log(annonce);
-    mysqlConnection.query("UPDATE annonce SET marque='"+req.body.marque+"', modele='"+req.body.modele+"', annee='"+req.body.annee+"' where idannonce ="+req.body.idannonce,
-        [annonce, req.body.idannonce], function (err, results) {
+    let skin = new Skin( req.body.id, req.body.name, req.body.prix, req.body.jeu);
+    console.log(skin);
+    mysqlConnection.query("UPDATE annonce SET name='"+req.body.name+"', jeu='"+req.body.jeu+"', prix='"+req.body.prix+"' where id ="+req.body.id,
+        [skin, req.body.id], function (err, results) {
             if (err) {
                 console.log(error);
                 res.status(400).json({'message':error});
             } else {
-                res.status(202).json({ 'message':'success' });
+                res.status(202).json({ 'message':'successe' });
             }
         })
 };
-exports.apiAnnonceAdd = function (req, res) {
-    let annonce = new Annonce(req.body.idannonce, req.body.marque, req.body.modele, req.body.annee, req.body.kilometrage, req.body.prix, req.body.description, req.body.photo, req.body.codepostal, req.body.idcategorie);
-    console.log(annonce);
-    mysqlConnection.query("INSERT INTO annonce SET?", 
-        annonce, function (err, results) {
+//API OK
+exports.SkinSaveApi = function (req, res) {
+    let skin = new Skin(req.body.id, req.body.name, req.body.prix, req.body.jeu, req.body.idcateg, req.body.idrare);
+    console.log(skin);
+    mysqlConnection.query("INSERT INTO skins SET?", 
+        skin, function (err, results) {
             if (err) {
                 res.status(400).json({'message':'error'});
             } else {
@@ -44,10 +47,11 @@ exports.apiAnnonceAdd = function (req, res) {
         });
     };
 
+//API ok
 
-exports.apiAnnonceDelete = function (req, res) {
-    const id = req.params.id;
-    let sql = `DELETE from annonce WHERE idannonce = ${id}`; 
+exports.SkinDeleteApi = function (req, res) {
+    const userId = req.params.userId;
+    let sql = `DELETE from skins WHERE id = ${userId}`; // id = nom clé primaire dans la bd, userId est lié au server
     let query = mysqlConnection.query(sql,(err, result)=>{
         if(err) {
             res.status(400).json({'message':error});
@@ -58,17 +62,18 @@ exports.apiAnnonceDelete = function (req, res) {
     });
 };
 
-exports.apiAnnonce = function (req, res) {
-    const id = req.params.id;
-    let sql = `SELECT * FROM annonce WHERE idannonce = ${id} `;
+//API ok
+exports.SkinEditApi = function (req, res) {
+    const userId = req.params.userId;
+    let sql = `SELECT * FROM skins WHERE id = ${userId} `; // id = nom clé primaire dans la bd, userId est lié au server
     let query = mysqlConnection.query(sql,(err, rows)=>{
         if(err) {        
             res.status(400).json({'message':error});
         }
         else{
             res.status(200).json({
-                title :'Annonce demandée',
-                annonces : rows
+                title :'Skins TEST',
+                skins : rows
             })
         }
     });
